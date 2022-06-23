@@ -1,7 +1,7 @@
 {
     "name": "White",
     "description": "White Prxy Uses rammerhead",
-    "repository": "https://github.com/AstralService/Coffee-Proxy",
+    "repository": "https://github.com/Kardna/White",
     "logo": "https://raw.githubusercontent.com/binary-person/rammerhead/master/public/logo.png",
     "keywords": ["rammerhead", "proxy", "web proxy", "unblocker"]
 }
