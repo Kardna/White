@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html data-theme="coffee">
+    <head>
+        <link rel="icon" type="image/png" href="./×𝙒𝙝𝙞𝙩𝙚×.png" />
+        <script src="./script.js"></script>
+        <link rel="stylesheet" href="./css/main.css" />
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="https://kit.fontawesome.com/9513f4fc9a.js" crossorigin="anonymous"></script>
+        <title>White</title>
+    </head>
+    <body>
+        <div id="particles-js"></div>
+        <script src="particles.js"></script>
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <div class="flex justify-center items-center max-w-full h-screen flex-col">
+            <div class="flex absolute justify-end top-0 right-0 dropdown dropdown-end">
+                <button
+                    tabindex="0"
+                    class="text-gray-500 w-10 h-10 relative focus:outline-none bg-white m-1"
+                    id="my-drawer"
+                    @click="open = !open"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6"
+                        fill="none"
+                        viewBox="0 0 50 50"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M 2 9 L 2 11 L 48 11 L 48 9 L 2 9 z M 2 24 L 2 26 L 48 26 L 48 24 L 2 24 z M 2 39 L 2 41 L 48 41 L 48 39 L 2 39 z"
+                        />
+                    </svg>
+                </button>
+                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-11">
+                    <li><a href="#settings">Settings</a></li>
+                    <li><a href="https://kardna.cf">Kardna</a></li>
+                    <li><a href="#session-table">Session Ids</a></li>
+                </ul>
+            </div>
+            <div class="flex items-center flex-col">
+                <div class="hero min-h-screen">
+                    <div class="hero-content text-center base-100 rounded-md">
+                        <div class="max-w-md">
+                            <h1 class="text-5xl font-bold select-none">White</h1>
+                            <p class="py-6 select-none">
+                                White is powered by
+                                <a href="https://github.com/binary-person/rammerhead" target="_blank" class="underline"
+                                    >RammerHead</a
+                                >
+                            </p>
+                            <input
+                                type="text"
+                                placeholder="Type here"
+                                class="input input-bordered input-primary w-full max-w-xs mb-[1.2em]"
+                                id="session-url"
+                            />
+                            <button class="btn btn-primary" id="session-go">Search</button>
+
+                            <div class="form-control flex justify-center items-center">
+                                <label class="label"> </label>
+                                <label class="input-group">
+                                    <span style="color: black;"class="">SessionId</span>
+                                    <input
+                                    style="color: white;"
+                                        type="text"
+                                        placeholder="Make a session id in Settings"
+                                        class="input input-bordered w-full max-w-xs"
+                                        id="session-id"
+                                        disabled
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Add modal to display current session ids eg settings page -->
+        </div>
+        <!-- Error handling -->
+        <div class="fixed bottom-10 right-0 mb-6 mr-6" id="error-container" style="display: none">
+            <div class="alert alert-error shadow-lg">
+                <div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="stroke-current flex-shrink-0 h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                    <span id="error-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings And credits Modal -->
+        <div class="modal" id="settings">
+            <div class="modal-box">
+                <h1 style="color: black;"class="font-bold text-2xl flex justify-center items-center mb-8">Settings</h1>
+                <div class="flex justify-center items-center flex-col">
+                    <div style="color: black;"class="divider">General</div>
+                    <!-- Url Shuffling -->
+                    <div class="form-control">
+                        <div
+                            class="tooltip"
+                            data-tip="Url Shuffling Basically just shuffles your requests url. ('encrypts it')"
+                        >
+                            <label class="label cursor-pointer">
+                                <span class="label-text mr-5">Url Shuffling</span>
+                                <input
+                                    type="checkbox"
+                                    checked="checked"
+                                    class="checkbox checkbox-primary"
+                                    id="session-shuffling"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <!-- About Blank Cloak -->
+                    <div class="form-control">
+                        <div
+                            class="tooltip"
+                            data-tip="Ab Cloak Stands For About:blank Cloaking. An ab cloak is used to stop the requested proxy url to go into your search history."
+                        >
+                            <label class="label cursor-pointer">
+                                <span style="color: black;"class="label-text mr-5">Ab Cloak</span>
+
+                                <input
+                                    type="checkbox"
+                                    checked="checked"
+                                    class="checkbox checkbox-primary"
+                                    id="Ab-Cloak"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Http Proxy -->
+                    <div class="form-control">
+                        <label class="label"> </label>
+                        <label class="input-group">
+                            <span style="color: black;">HttpProxy</span>
+                            <input
+                                type="text"
+                                placeholder="Enter Here"
+                                class="input input-bordered w-36"
+                                id="session-httpproxy"
+                            />
+                        </label>
+                    </div>
+
+                    <div style="color: black;"class="divider">Sessions</div>
+                    <div
+                        class="tooltip"
+                        data-tip="Create A Session Id to use rammerhead (you can access all of your sessions by going to the ('Session Table') Tab"
+                    >
+                        <button class="btn btn-primary mb-6" id="session-create-btn">Create Session Id</button>
+                    </div>
+                </div>
+                <div class="modal-action">
+                    <a href="#" class="btn">Close</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="session-table">
+            <div class="modal-box max-w-full">
+                <div class="flex justify-center">
+                    <h2 class="font-bold text-lg">Session-Table</h2>
+                    <div class="modal-action">
+                        <a href="#" class="btn btn-outline absolute right-2 top-2 w-10 h-4"
+                            ><i class="fa-solid fa-x"></i
+                        ></a>
+                    </div>
+                </div>
+
+                <!-- Table Stuff -->
+                <div class="mt-4">
+                    <div class="overflow-x-auto">
+                        <table class="table w-full">
+                            <!-- head -->
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Session ID</th>
+
+                                    <th>Created on</th>
+                                </tr>
+                            </thead>
+                            <!-- Rammerhead should take care of the rest -->
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+
+        <!-- Footer Content -->
+        <div class="absolute flex bottom-0 w-full">
+            <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+                <div class="items-center grid-flow-col">
+                    <p>
+                        Copyright (c) 2022 -
+                        <a href="https://github.com/Kardna/"
+                            >Kardna Network</a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
